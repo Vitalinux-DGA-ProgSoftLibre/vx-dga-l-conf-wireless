@@ -1,0 +1,6 @@
+vx-dga-l-conf-wireless (1.0-2) unstable; urgency=low
+
+  * Paquete resultante de mover lo relativo de las wireless del vx-dga-l-migasfree-launcher
+  * Permite configurar de manera automática las Wireless de los centros
+
+ -- Arturo Martín <amartinromero@gmail.com>  Thu, 2 Nov 2017 00:15:06 +0200
