@@ -1,6 +1,68 @@
-vx-dga-l-conf-wireless (1.0-2) unstable; urgency=low
+vx-dga-l-conf-wireless (1.0-13) unstable; urgency=low
 
+  * Se ha añadido las wireless del IES Santa Emereciana
+
+ -- Ignacio Sancho <sannacho@gmail.com>  Tue, 13 Feb 2017 12:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-12) unstable; urgency=low
+
+  * Se ha añadido las wireless del IES de Mequinenza
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 6 Feb 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-11) unstable; urgency=low
+
+  * Se ha añadido las wireless del CEIP Justicia de Aragón de Alcorisa
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 30 Jan 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-10) unstable; urgency=low
+
+  * Se ha añadido las wireless del CEIP San Miguel de Mora de Rubielos
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 25 Jan 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-9) unstable; urgency=low
+
+  * Se ha añadido las wireless del CRA Orba de Botorrita
+  * Se ha añadido la wireless del CEIP de Sarrión
+  * Se ha añadido la wireless del CRA Monegros Norte
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 16 Jan 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-8) unstable; urgency=low
+
+  * Se ha añadido las wireless del CRA Orba de Muel
+  * Se ha añadido la wireless del CEIP Ricardo Mallén de Calamocha
+  * Se ha añadido una segunda wireless del IES Miguel de Molinos
+  * Se ha añadido la wireless del CEIP Gil Tarín
+
+ -- Arturo Martin <amartinromero@gmail.com>  Thu, 11 Jan 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-6) unstable; urgency=low
+
+  * Se ha añadido las wireless del IES Pablo Gargallo
+  * Se ha añadido la wireless del CEIP Tomás Alvira
+  * Se ha añadido la wireless del IES Miguel de Molinos
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 19 Dec 2017 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-5) unstable; urgency=low
+
+  * Se ha añadido una nueva wireless de la cpepa de la Ribagorza
+
+ -- Ignacio Sancho <sannacho@gmail.com>  Thu, 13 Nov 2017 13:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-4) unstable; urgency=low
+
+  * Se ha añadido una nueva wireless de la cpepa bajo cinca
+
+ -- Arturo Martin <amartinromero@gmail.com>  Thu, 2 Nov 2017 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-3) unstable; urgency=low
+
+  * Se configurar la configuración de las wireless como un servicio más del sistema
   * Paquete resultante de mover lo relativo de las wireless del vx-dga-l-migasfree-launcher
   * Permite configurar de manera automática las Wireless de los centros
 
- -- Arturo Martín <amartinromero@gmail.com>  Thu, 2 Nov 2017 00:15:06 +0200
+ -- Arturo Martin <amartinromero@gmail.com>  Thu, 2 Nov 2017 00:15:06 +0200

@@ -2,22 +2,44 @@
 # Script de configuración de la red Wireless mediante la herramienta 
 
 LOGVX="/var/log/vitalinux/vitalinux-general.log"
+MOSTRARMENSAJE=1
+NINTENTOS=1
 
-if [ ${USER} = "root" ] ; then
+if [ "${USER}" = "root" ] ; then
 
-	if ( nmcli -t -f device,type dev status  | grep wireless &> /dev/null ) ; then
+# Listamos la lista de interfaces wireless para saber si hay alguna conectada:
+## # nmcli -t -f device,type,state dev status
+## wlan0:802-11-wireless:desconectado
+## eth0:802-3-ethernet:no disponible
+## wlan1:802-11-wireless:conectado
+
+while true ; do
+
+	if ( nmcli -t -f type dev status  | grep "^802-11-wireless\|^wifi" &> /dev/null ) ; then
+
+		# Comprobamos el número de interfaz wireless del equipo:
+		NDEVICESWIRELESS="$(nmcli -t -f type,state dev status  | grep -c "^802-11-wireless:\|^wifi:")"
+
+		# Para saber si ya hay una conexión wireless ya establecida se puede hacer de dos formas:
+		## 1) nmcli -t -f devices,name con status : Nos devuelve únicmente las conexiones activas (necesitamos saber el nombre de la interfaz Wireless en el sistema para filtrarlo)
 
 		DEVICEWIRELESS="$(nmcli -t -f device,type dev status  | grep wireless | cut -d":" -f1)"
 		REDWIRELESSCONECTADO="$(nmcli -t -f devices,name con status \
 				| grep "${DEVICEWIRELESS}:" | cut -d':' -f2)"
 
+		## 2) nmcli -t -f type,state dev status : el parámetro "state" nos dice si esta conectado|desconectado
+
 		if ! [ -z ${REDWIRELESSCONECTADO} ] ; then
 			NOMBRERED="$(cat "/etc/NetworkManager/system-connections/${REDWIRELESSCONECTADO}" \
 				| grep "ssid" | cut -d"=" -f2)"
-			notify-send \
+			# Mostramos una vez el mensaje de conexión a la wireless (variable MOSTRARMENSAJE):
+			if test ${MOSTRARMENSAJE} -eq 1 && notify-send \
 				"Wireless Vitalinux" "Estas conectado actualmente a la Wireless: \"${NOMBRERED}\"" \
-				-i wireless -t 5000
-			exit 0
+				-i wireless -t 5000 ; then
+				MOSTRARMENSAJE=0
+			fi
+
+			#exit 0
 		else
 
 			WIRELESSCENTROS="/usr/share/vitalinux/wireless/.vx-wireless-centros"
@@ -47,10 +69,10 @@ if [ ${USER} = "root" ] ; then
 
 					##if ! test -f "/etc/NetworkManager/system-connections/${IDRED}" ; then
 					#if ! ( grep "ssid=${NOMBRERED}" /etc/NetworkManager/system-connections/* &> /dev/null ) ; then
-						echo "=> $(date) - Va a tratar de configurar la red wireless: ${NOMBRERED}" >> ${LOGVX}
+						echo "=> $(date) - Va a tratar de configurar la red wireless: ${NOMBRERED}" | tee -a ${LOGVX}
 						if ! test -z ${PASSWORD} ; then
 							if nmcli device wifi connect ${NOMBRERED} password ${PASSWORD} name ${IDRED} ; then
-								echo "=> $(date) - Se ha configurado la red wireless: ${NOMBRERED}" >> ${LOGVX}
+								echo "=> $(date) - Se ha configurado la red wireless: ${NOMBRERED}" | tee -a ${LOGVX}
 								notify-send \
 									"Wireless Centros Vitalinux" "Se ha configurado la red wireless: \"${NOMBRERED}\"" \
 									-i wireless -t 5000
@@ -58,7 +80,7 @@ if [ ${USER} = "root" ] ; then
 							fi
 						else
 							if nmcli device wifi connect ${NOMBRERED} name ${IDRED} ; then
-								echo "=> $(date) - Se ha configurado la red wireless: ${NOMBRERED}" >> ${LOGVX}
+								echo "=> $(date) - Se ha configurado la red wireless: ${NOMBRERED}" | tee -a ${LOGVX}
 								notify-send \
 									"Wireless Centros Vitalinux" "Se ha configurado la red wireless: \"${NOMBRERED}\"" \
 									-i wireless -t 5000
@@ -68,17 +90,26 @@ if [ ${USER} = "root" ] ; then
 					##fi
 
 				fi
-				CONTADOR=$(expr ${CONTADOR} + 1)
+				let CONTADOR+=1
 			done
 
-			exit 0
+			#exit 0
 
 		fi
 
+		
+
 	else
-		echo "=> $(date) - No existe ninguna interfaz Wireless que configurar ..."
-		exit 0
+		echo "=> $(date) - De momento no se detecta ninguna interfaz Wireless que configurar ..."
+		let NINTENTOS+=1
+		if test ${NINTENTOS} -eq 40 ; then
+			echo "=> $(date) - No se detecta ninguna interfaz Wireless que configurar" | tee -a ${LOGVX}
+			exit 0
+		fi
 	fi
+
+	sleep 2
+done
 
 else
 	echo "=> $(date) - Debes tener permisos de Root para usar esta herramienta de configuración de Red ..."

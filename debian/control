@@ -3,12 +3,13 @@ Section: utils
 Priority: extra
 Maintainer: Arturo Martín <amartinromero@gmail.com>
 Build-Depends: debhelper (>= 8.0.0)
-Standards-Version: 3.9.3
+Standards-Version: 3.9.7
 Homepage: http://wiki.vitalinux.educa.aragon.es
 
 Package: vx-dga-l-conf-wireless
 Architecture: all
-PreDepends: vx-dga-l-migasfree-launcher (>=6.0)
+Replaces: vx-dga-l-migasfree-launcher
+Pre-Depends: vx-dga-l-migasfree-launcher (>=6.0)
 Depends: ${misc:Depends}, network-manager, vx-dga-l-migasfree-launcher (>=6.0)
 Description: Configuracion Automatica de Wireless de centros Vitalinux
  Configuracion Automatica de las redes Wireless de centros los Vitalinux

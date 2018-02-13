@@ -1,0 +1,3 @@
+# Evitamos que el arhivo con las wireless de los centros se suba al github
+usr/share/vitalinux/wireless/.*wireless*
+.**wireless**
