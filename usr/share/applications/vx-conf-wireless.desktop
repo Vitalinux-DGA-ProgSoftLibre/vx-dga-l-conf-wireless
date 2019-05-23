@@ -8,6 +8,6 @@ Icon=wireless
 Exec=sudo /usr/bin/vx-conf-wireless
 Terminal=false
 Type=Application
-Categories=Sistema;
+Categories=Vitalinux;
 StartupNotify=true
 Hidden=false

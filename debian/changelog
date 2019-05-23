@@ -1,3 +1,122 @@
+vx-dga-l-conf-wireless (1.0-33) unstable; urgency=low
+
+  * Nueva red Wireless del IES Bajo Aragón
+
+ -- Arturo Martin <amartinromero@gmail.com>  Fri, 17 May 2019 00:17:06 +0200
+
+vx-dga-l-conf-wireless (1.0-32) unstable; urgency=low
+
+  * Nueva red Wireless del CRA Arco Iris
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 12 Mar 2019 00:17:06 +0200
+
+vx-dga-l-conf-wireless (1.0-31) unstable; urgency=low
+
+  * Se elimina la red wireless vieja del IES Miralbueno y se deja la nueva
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 26 Feb 2019 00:17:06 +0200
+
+vx-dga-l-conf-wireless (1.0-30) unstable; urgency=low
+
+  * Solucionado un bug en la clave de la wireless del IES Maria Moliner
+
+ -- Arturo Martin <amartinromero@gmail.com>  Thu, 14 Feb 2019 00:17:06 +0200
+
+vx-dga-l-conf-wireless (1.0-29) unstable; urgency=low
+
+  * Nueva Red Wireless del IES Miralbueno
+
+ -- Arturo Martin <amartinromero@gmail.com>  Mon, 11 Feb 2019 00:17:06 +0200
+
+vx-dga-l-conf-wireless (1.0-28) unstable; urgency=low
+
+  * Red Wireless del IES Luis Buñuel
+
+ -- Arturo Martin <amartinromero@gmail.com>  Mon, 28 Jan 2019 00:17:06 +0200
+
+vx-dga-l-conf-wireless (1.0-27) unstable; urgency=low
+
+  * Cambio de password de la red wifi del IES Pedro de Luna
+
+ -- Arturo Martin <amartinromero@gmail.com>  Mon, 28 Jan 2019 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-26) unstable; urgency=low
+
+  * Bug en el nombre de la red de Ricla del CEIP Maestro Monreal
+
+ -- Arturo Martin <amartinromero@gmail.com>  Thu, 24 Jan 2019 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-25) unstable; urgency=low
+
+  * Se añade una nueva Wireless de Benabarre
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 22 Jan 2019 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-24) unstable; urgency=low
+
+  * Se añade una polkit para poder eliminar las configuraciones wireless de Centros Vitalinux
+
+ -- Arturo Martin <amartinromero@gmail.com>  Sun, 23 Dec 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-23) unstable; urgency=low
+
+  * Se elimina un BUG que había al obtener el basename del fichero wireless activo
+  * Se tiene en cuenta los posibles espacios en blanco que haya en el nombre de los archivos o redes
+  * Se añade una restricción para que ciertos grupos de usuario no accedan a determinadas Wireless
+  * Se registran las wireless de los nuevos 11 centros:
+  * CEIP BASILIO PARAÍSO
+  * IES JOAQUIN COSTA
+  * CEIP PEDRO J. RUBIO
+  * CEIP PIERRES VEDEL
+  * IES LUCAS MALLADA
+  * IES HERMANOS ARGENSOLA
+  * IES CONDE ARANDA
+  * CEIP BENEDICTO XIII
+  * IES MATARRAÑA
+  * CEIP MAESTRO MONREAL
+  * IES MARÍA MOLINER
+
+ -- Arturo Martin <amartinromero@gmail.com>  Mon, 10 Dec 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-22) unstable; urgency=low
+
+  * Se añade la nueva red del IES Gudar Javalambre
+
+ -- Ignacio Sancho <sannacho@gmail.com> Thu, 15 Nov 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-21) unstable; urgency=low
+
+  * El demonio se finaliza cuando el usuario sale de la sesión
+  * Nombre del demonio de wireless menor a 15 caracteres
+
+ -- Ignacio Sancho <sannacho@gmail.com> Thu, 8 Nov 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-20) unstable; urgency=low
+
+  * Se añade la nueva red del IES de Borja: IESJdLanuza
+
+ -- Arturo Martin <amartinromero@gmail.com>  Mon, 5 Nov 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-19) unstable; urgency=low
+
+  * Evitar configurar una misma red wireless más de una vez
+  * De esta forma evitar que aparezcan multiples ficheros vx-centro-uid_conexion
+  * En el caso de cambiar la wireless de una red será necesario cambiar el ID de la red, el segundo campo del archivo de .vx-wireless-centros
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 23 Oct 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-15) unstable; urgency=low
+
+  * Solucionado conflicto de nombres en el servicio con carpetas compartidas
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 20 Feb 2018 00:15:06 +0200
+
+vx-dga-l-conf-wireless (1.0-14) unstable; urgency=low
+
+  * Se ha añadido las wireless del IES Villanueva de Gallego
+
+ -- Arturo Martin <amartinromero@gmail.com>  Tue, 20 Feb 2018 00:15:06 +0200
+
 vx-dga-l-conf-wireless (1.0-13) unstable; urgency=low
 
   * Se ha añadido las wireless del IES Santa Emereciana

@@ -32,6 +32,52 @@ case "$1" in
 		chmod 600 /usr/share/vitalinux/wireless/.vx-wireless-centros
 	fi
 
+	# Hacemos limpia de las system-connections del NetworkManager
+	
+	# Eliminamos todas aquellas conexiones que "nunca" se han establecido: nmcli con list | grep "nunca"
+	for FICH in $(nmcli con list | \
+		grep "nunca" | tr -s " " " " | \
+		cut -d" " -f1,2 --output-delimiter="-") ; do
+		if test -f "/etc/NetworkManager/system-connections/${FICH}" ; then
+			rm -f "/etc/NetworkManager/system-connections/${FICH}"
+		fi
+	done
+
+	# Comprobamos si el equipo tiene una interfaz wireless:
+	if ( nmcli -t -f device,type dev status  | grep wireless &> /dev/null ) ; then
+		# Eliminamos todas las conexiones o configuraciones wireless si el dispositivo de red esta desconectado:
+		## Estas conexiones cumplen el siguiente patrón: grep -E "vx-[a-zA-Z0-9]*-[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}"
+		DEVICEWIRELESS="$(nmcli -t -f device,type dev status  | grep wireless | cut -d":" -f1)"
+		ESTADODEVICE="$(nmcli -t -f device,state dev status | grep "^${DEVICEWIRELESS}" | cut -d":" -f2)"
+		#REDWIRELESSCONECTADO="$(nmcli -t -f devices,name con status \
+		#	| grep "${DEVICEWIRELESS}:" | cut -d':' -f2)"
+		if test "${ESTADODEVICE}" != "conectado" ; then
+			echo "No esta el dispositivo Wireless activo ... eliminaremos configuraciones innecesarias."
+				rm -f /etc/NetworkManager/system-connections/vx-*
+		else
+			echo "Hay un dispositivo Wireless activo, conectado ... eliminaremos configuraciones innecesarias."
+			# Parametros de salida del "nmcli con": NAME,UUID,DEVICES,STATE,DEFAULT,DEFAULT6,VPN,ZONE,DBUS-PATH,CON-PATH,SPEC-OBJECT,MASTER-PATH
+			CONFWIRELESS_UUID="$(nmcli -t -f DEVICES,UUID con status | grep "^${DEVICEWIRELESS}:" | cut -d":" -f2)"
+			RUTAFICHERO="$(grep -R "^uuid=${CONFWIRELESS_UUID}" "/etc/NetworkManager/system-connections" | cut -d":" -f1)"
+			! [ -z "${RUTAFICHERO}" ] && FICHCONFREDACTIVO="$(basename "${RUTAFICHERO}")" || FICHCONFREDACTIVO="Ninguno"
+			for FICH in /etc/NetworkManager/system-connections/* ; do
+				if echo "${FICH}" | \
+					grep -E "vx-[a-zA-Z0-9]*-[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}" | \
+					grep -v "${FICHCONFREDACTIVO}" > /dev/null 2>&1 ; then
+					[ -f "${FICH}" ] && rm -f "${FICH}"
+				fi
+			done
+			# Eliminamos cualquier otro archivo de configuración de wireless que hubiera que sea diferente a la activa:
+			# ls | xargs -i crudini --get {} connection type
+			for FICH in /etc/NetworkManager/system-connections/* ;do
+				if grep "type=802-11-wireless" "${FICH}" &> /dev/null && \
+					! [[ "${FICH}" =~ ${FICHCONFREDACTIVO} ]] && \
+					[[ "${FICH}" =~ ^/.*/vx-.* ]] ; then
+					rm -f "${FICH}"
+				fi
+			done
+		fi		
+	fi
     ;;
 
     abort-upgrade|abort-remove|abort-deconfigure)

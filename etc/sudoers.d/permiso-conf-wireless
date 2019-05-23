@@ -1,4 +1,3 @@
 # Forma de conceder privilegios a los usuarios:
 ## alumno ALL = (root) [NOPASSWD:] ALL/comandos
 ALL ALL = (ALL) NOPASSWD: /usr/bin/vx-conf-wireless, /usr/bin/vx-eliminar-wireless
-ALL ALL=(ALL) NOPASSWD: /sbin/start-stop-daemon --start --quiet -m --name nfs-cliente.sh --pidfile /run/nfs-cliente.pid -b -a /usr/bin/vx-conf-wireless

@@ -10,6 +10,6 @@ Package: vx-dga-l-conf-wireless
 Architecture: all
 Replaces: vx-dga-l-migasfree-launcher
 Pre-Depends: vx-dga-l-migasfree-launcher (>=6.0)
-Depends: ${misc:Depends}, network-manager, vx-dga-l-migasfree-launcher (>=6.0)
+Depends: ${misc:Depends}, network-manager, vx-dga-l-migasfree-launcher (>=6.0), vx-dga-l-scripts
 Description: Configuracion Automatica de Wireless de centros Vitalinux
  Configuracion Automatica de las redes Wireless de centros los Vitalinux
